@@ -52,13 +52,13 @@ tests = [
 ]
 
 [project.entry-points.'aiida.calculations']
-'ase.ase' = 'aiida_inq.calculations.inq:InqCalculation'
+'inq.inq' = 'aiida_inq.calculations.inq:InqCalculation'
 
 [project.entry-points.'aiida.parsers']
-'ase.ase' = 'aiida_inq.parsers.inq:InqParser'
+'inq.inq' = 'aiida_inq.parsers.inq:InqParser'
 
 [project.entry-points.'aiida.workflows']
-'ase.gpaw.base' = 'aiida_inq.workflows.base:InqBaseWorkChain'
+'inq.base' = 'aiida_inq.workflows.base:InqBaseWorkChain'
 
 [tool.flit.module]
 name = 'aiida_inq'
