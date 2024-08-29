@@ -152,23 +152,8 @@ inq clear
             self.report(f'There was no run type specified.')
             self.exit_codes.NO_RUN_TYPE_SPECIFIED
         for key, val in parameters.items():
-            if type(val) is dict:
-                for k, v in val.items():
-                    if type(v) is dict:
-                        k2, v2 = v.values()
-                        if type(v2) is np.ndarray:
-                            v2 = ' '.join(v2.astype('str'))
-                        if v2 is True:
-                            v2 = ''
-                        f.write(f"inq {key} {k} {k2} {v2}\n")
-                    else:
-                        if type(v) is np.ndarray:
-                            v = ' '.join(v.astype('str'))
-                        elif type(v) is list:
-                            v = ' '.join([str(x) for x in v])
-                        elif v is True:
-                            v = ''
-                        f.write(f"inq {key} {k} {v}\n")
+            for k, v in val.items():
+                f.write(f"inq {key} {k} {v}\n")
 
         f.write(f'inq run {run_type}\n')
 
