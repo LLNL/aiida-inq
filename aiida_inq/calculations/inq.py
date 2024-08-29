@@ -62,6 +62,16 @@ class InqCalculation(CalcJob):
             default=cls._DEFAULT_OUTPUT_FILE
         )
         spec.input(
+            'metadata.options.scheduler_stdout',
+            valid_type=str,
+            default=cls._DEFAULT_OUTPUT_FILE
+        )
+        spec.input(
+            'metadata.options.scheduler_stderr',
+            valid_type=str,
+            default=cls._DEFAULT_ERROR_FILE
+        )
+        spec.input(
             'metadata.options.parser_name', 
             valid_type=str, 
             default='inq.inq'
@@ -152,12 +162,10 @@ inq clear
                             v2 = ''
                         f.write(f"inq {key} {k} {k2} {v2}\n")
                     else:
-                        print(v, type(v))
                         if type(v) is np.ndarray:
                             v = ' '.join(v.astype('str'))
                         elif type(v) is list:
                             v = ' '.join([str(x) for x in v])
-                            print(v)
                         elif v is True:
                             v = ''
                         f.write(f"inq {key} {k} {v}\n")
@@ -188,6 +196,7 @@ inq clear
         calcinfo.local_copy_list = local_copy_list
         calcinfo.remote_copy_list = remote_copy_list
         calcinfo.remote_symlink_list = remote_symlink_list
+        calcinfo.retrieve_list = []
         calcinfo.retrieve_temporary_list = [self._DEFAULT_OUTPUT_FILE,
                                             self._DEFAULT_ERROR_FILE]
 
