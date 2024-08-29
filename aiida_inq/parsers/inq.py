@@ -62,6 +62,7 @@ class InqParser(Parser):
             if 'Energy:' in line:
                 state = 'energy'
                 result_dict[state] = {'unit': 'eV'}
+                continue
             if line == '':
                 state = None
             if state == 'energy':
