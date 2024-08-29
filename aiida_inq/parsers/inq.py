@@ -12,7 +12,7 @@ from aiida.plugins import CalculationFactory
 InqCalculation = CalculationFactory('inq.inq')
 
 
-class InqBaseParser(Parser):
+class InqParser(Parser):
     """
     Base parser for INQ calculations.
     """
@@ -22,7 +22,7 @@ class InqBaseParser(Parser):
         from an INQ calculation.
         """
         from aiida.common import exceptions
-        super(InqBaseParser, self).__init__(node)
+        super(InqParser, self).__init__(node)
         if not issubclass(node.process_class, InqCalculation):
             raise exceptions.ParsingError("Can only parse NWChem calculations")
 
