@@ -1,0 +1,64 @@
+[build-system]
+requires = ['flit_core>=3.4,<4']
+build-backend = 'flit_core.buildapi'
+
+[project]
+name = 'aiida-inq'
+dynamic = ['description', 'version']
+authors = [
+    {name = 'Nathan Keilbart', email = 'keilbart1@llnl.gov'}
+]
+readme = 'README.md'
+license = {file = 'LICENSE.txt'}
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Framework :: AiiDA',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: MacOS :: MacOS X',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Topic :: Scientific/Engineering'
+]
+keywords = ['aiida', 'workflows', 'inq']
+requires-python = '>=3.10'
+dependencies = [
+    'aiida-core~=2.0',
+    'ase',
+    'aiida-ase',
+    'numpy'
+]
+
+[project.urls]
+Source = 'https://github.com/LLNL/aiida-inq'
+
+[project.optional-dependencies]
+docs = [
+    'sphinx',
+    'sphinx-autoapi',
+    'sphinx-book-theme',
+    'sphinx-click',
+    'sphinx-copybutton'
+]
+pre-commit = [
+    'pre-commit',
+    'pylint',
+]
+tests = [
+    'pgtest',
+    'pytest',
+    'pytest-regressions',
+]
+
+[project.entry-points.'aiida.calculations']
+'ase.ase' = 'aiida_inq.calculations.inq:InqCalculation'
+
+[project.entry-points.'aiida.parsers']
+'ase.ase' = 'aiida_inq.parsers.inq:InqParser'
+
+[project.entry-points.'aiida.workflows']
+'ase.gpaw.base' = 'aiida_inq.workflows.base:InqBaseWorkChain'
+
+[tool.flit.module]
+name = 'aiida_inq'
