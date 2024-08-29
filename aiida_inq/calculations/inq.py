@@ -8,7 +8,7 @@ from aiida.common.datastructures import CalcInfo, CodeInfo # type: ignore
 
 class InqCalculation(CalcJob):
     """
-    Base calculation class for the Generative model code.
+    Base calculation class for the INQ code.
     """
 
     # Default input and output files

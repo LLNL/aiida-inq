@@ -24,7 +24,7 @@ class InqParser(Parser):
         from aiida.common import exceptions
         super(InqParser, self).__init__(node)
         if not issubclass(node.process_class, InqCalculation):
-            raise exceptions.ParsingError("Can only parse NWChem calculations")
+            raise exceptions.ParsingError("Can only parse INQ calculations")
 
     def parse(self, **kwargs):
         """
