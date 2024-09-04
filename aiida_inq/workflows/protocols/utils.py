@@ -74,16 +74,16 @@ class ProtocolMixin:
         if overrides:
             inputs = recursive_merge(inputs, overrides)
         
-        electrons = inputs['inq'].get('electrons', None)
+        electrons = inputs['inq']['parameters'].get('electrons', None)
         if electrons:
-            cutoff = inputs['inq']['electrons'].get('cutoff', None)
+            cutoff = inputs['inq']['parameters']['electrons'].get('cutoff', None)
         else:
             cutoff = None
         if not cutoff:
             cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
             if not electrons:
-                inputs['inq']['electrons'] = {}
-            inputs['inq']['electrons']['cutoff'] = f'{cutoff} Ha'
+                inputs['inq']['parameters']['electrons'] = {}
+            inputs['inq']['parameters']['electrons']['cutoff'] = f'{cutoff} Ha'
 
         return inputs
 
@@ -104,10 +104,14 @@ class ProtocolMixin:
         Return a suggested energy cutoff based on the provided protocol
         and pseudo_set designated.
         """
-        with open('pseudos/pseudos.yaml', 'w') as infile:
+        from importlib_resources import files
+        from . import pseudos # type: ignore
+        pseudos_path = files(pseudos) / 'pseudos.yaml'
+
+        with open(pseudos_path, 'r') as infile:
             pseudo_info = yaml.safe_load(infile)
 
-        values = pseudo_info.pop(pseudo_set)
+        values = pseudo_info.get(pseudo_set, None)
 
         atoms = structure.get_ase()
 
