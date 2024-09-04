@@ -97,8 +97,8 @@ class InqCalculation(CalcJob):
 
         spec.default_output_node = 'output_parameters'
 
-        spec.exit_code(201, 'INCORRECT_INPUT_PARAMETER',
-            message='One of the point charges is not formatted correctly.')
+        spec.exit_code(201, 'NO_ENERGY_CUTOFF_SPECIFIED',
+            message='At minimum the energy cutoff must be specified.')
         spec.exit_code(202, 'NO_RUN_TYPE_SPECIFIED',
             message='No run type was specified in the input parameters.')
 
@@ -130,6 +130,13 @@ class InqCalculation(CalcJob):
         # Initiate variables
         parameters = self.inputs.parameters.get_dict()
         results = parameters.pop('results', {})
+
+        # Check if the cutoff has been given.
+        energy = parameters.get('energy', {})
+        cutoff = energy.get('cutoff', None)
+        if not cutoff:
+            self.report('The energy cutoff was not specified.')
+            self.exit_codes.NO_ENERGY_CUTOFF_SPECIFIED
 
         structure = self.inputs.structure
         atoms = structure.get_ase()
