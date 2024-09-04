@@ -1,6 +1,8 @@
 # aiida-inq
 AiiDA plugin for the LLNL developed INQ code.
 
+A basic understanding of how to interact with [AiiDA](https://aiida.readthedocs.io/projects/aiida-core/en/stable/) is required. Simple examples have been provided and can be found in the examples folder.
+
 ## Basic installation
 
 ```bash
