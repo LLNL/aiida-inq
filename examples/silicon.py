@@ -35,6 +35,12 @@ inputs = {
         },
         'run': {
             'ground-state': ''
+        },
+        'results': {
+            'ground-state': {
+                'energy': '',
+                'forces': ''
+            }
         }
     }),
     'metadata': {
