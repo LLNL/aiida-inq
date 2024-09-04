@@ -72,11 +72,17 @@ class ProtocolMixin:
                 overrides = yaml.safe_load(file)
 
         if overrides:
-            return recursive_merge(inputs, overrides)
+            inputs = recursive_merge(inputs, overrides)
         
-        cutoff = inputs['inq']['electrons'].get('cutoff', None)
+        electrons = inputs['inq'].get('electrons', None)
+        if electrons:
+            cutoff = inputs['inq']['electrons'].get('cutoff', None)
+        else:
+            cutoff = None
         if not cutoff:
             cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
+            if not electrons:
+                inputs['inq']['electrons'] = {}
             inputs['inq']['electrons']['cutoff'] = f'{cutoff} Ha'
 
         return inputs
