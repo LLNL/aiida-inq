@@ -22,7 +22,7 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
     @classmethod
     def define(cls, spec):
 
-        super(InqBaseWorkChain, cls).define(spec)
+        super().define(spec)
         spec.expose_inputs(
             InqCalculation, 
             namespace='inq'
@@ -31,13 +31,19 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
             'kpoints',
             valid_type = orm.KpointsData,
             required = False,
-            help = ''
+            help = 'Kpoint grid.'
         )
         spec.input(
             'kpoints_spacing',
             valid_type = orm.Float,
             required = False,
-            help = ''
+            help = 'The spacing between kpoints in reciprocal space.'
+        )
+        spec.input(
+            'clean_workdir',
+            valid_type = orm.Bool,
+            default = False,
+            help = 'Whether to clean all related work folders.'
         )
 
         spec.outline(
@@ -57,19 +63,6 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
 
         from ..protocols import inq as protocols # type: ignore
         return files(protocols) / 'base.yaml'
-
-    def setup(self):
-        """
-        Call the `setup` of the `BaseRestartWorkChain` and then create the 
-        inputs dictionary in `self.ctx.inputs`.
-
-        This `self.ctx.inputs` dictionary will be used by the 
-        `BaseRestartWorkChain` to submit the calculations in the internal loop.
-        """
-
-        super(InqBaseWorkChain, self).setup()
-        self.ctx.inputs = AttributeDict(
-            self.exposed_inputs(InqCalculation, 'inq'))
         
     def get_builder_from_protocol(
         cls,
@@ -104,11 +97,19 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
             launch.
         """
 
-        inputs = cls.get_protocol_inputs(protocol, overrides)
+        # Get input values
+        inputs = cls.get_protocol_inputs(structure, protocol, overrides)
 
+        # Pull the parameters and metadata information for the builder
         parameters = inputs['inq'].get('parameters', {})
         metadata = inputs['inq'].get('metadata', {})
 
+        # Setup the kpoints data
+        kpoints = parameters.get('kpoints', None)
+        if not kpoints:
+            kspacing = inputs.get('kpoints_distance')
+
+        # Put the needed inputs with the builder
         builder = cls.get_builder()
 
         builder.code = code
@@ -117,3 +118,20 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         builder.metadata = metadata
 
         return builder
+    
+    def setup(self):
+        """
+        Call the `setup` of the `BaseRestartWorkChain` and then create the 
+        inputs dictionary in `self.ctx.inputs`.
+
+        This `self.ctx.inputs` dictionary will be used by the 
+        `BaseRestartWorkChain` to submit the calculations in the internal loop.
+        """
+
+        super(InqBaseWorkChain, self).setup()
+        self.ctx.inputs = AttributeDict(
+            self.exposed_inputs(InqCalculation, 'inq'))
+        
+        self.ctx.parameters = self.ctx.inputs.parameters.get_dict()
+        
+        self.ctx.inputs.settings = self.ctx.inputs.settings.get_dict() if 'settings' in self.ctx.inputs else {}
