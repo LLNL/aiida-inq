@@ -105,6 +105,15 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         """
 
         inputs = cls.get_protocol_inputs(protocol, overrides)
-        cutoff = cls.suggested_energy_cutoff(protocol, inputs.pseudo_set)
 
-        return
+        parameters = inputs['inq'].get('parameters', {})
+        metadata = inputs['inq'].get('metadata', {})
+
+        builder = cls.get_builder()
+
+        builder.code = code
+        builder.structure = structure
+        builder.parameters = parameters
+        builder.metadata = metadata
+
+        return builder
