@@ -6,6 +6,7 @@ Most functionality comes from the AiiDA-QE plugin.
 import pathlib
 from typing import Optional, Union
 import yaml
+from aiida import orm
 
 
 class ProtocolMixin:
@@ -42,6 +43,7 @@ class ProtocolMixin:
     @classmethod
     def get_protocol_inputs(
         cls,
+        structure: orm.StructureData = None,
         protocol: Optional[dict] = None,
         overrides: Union[dict, pathlib.Path, None] = None,
     ) -> dict:
@@ -63,6 +65,8 @@ class ProtocolMixin:
                 f'`{protocol}` is not a valid protocol. Call ``get_available_protocols`` to show available protocols.'
             ) from exception
         inputs = recursive_merge(data['default_inputs'], protocol_inputs)
+        cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
+        inputs['inq']['energy']['cutoff'] = f'{cutoff} Ha'
         inputs.pop('description')
 
         if isinstance(overrides, pathlib.Path):
@@ -83,6 +87,7 @@ class ProtocolMixin:
     @classmethod
     def suggested_energy_cutoff(
         cls, 
+        structure,
         protocol,
         pseudo_set
     ) -> float:
@@ -90,7 +95,20 @@ class ProtocolMixin:
         Return a suggested energy cutoff based on the provided protocol
         and pseudo_set designated.
         """
+        with open('pseudos/pseudos.yaml', 'w') as infile:
+            pseudo_info = yaml.safe_load(infile)
+
+        values = pseudo_info.pop(pseudo_set)
+
+        atoms = structure.get_ase()
+
+        symbols = set(atoms.get_chemical_symbols())
+
         cutoff = 0
+        for atom in symbols:
+            c = values[atom][protocol]
+            if c > cutoff:
+                cutoff = c
 
         return cutoff
 
