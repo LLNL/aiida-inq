@@ -1,6 +1,1718 @@
-pseudodojo_pbe:
-pseudodojo_pbe_stringent:
 pseudodojo_lda:
+  Ag:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Al:
+    fast: 16.0
+    moderate: 22.0
+    precise: 28.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 34.0
+    moderate: 40.0
+    precise: 44.0
+  Au:
+    fast: 28.0
+    moderate: 32.0
+    precise: 38.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 26.0
+  Be:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Bi:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  Br:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Cd:
+    fast: 47.0
+    moderate: 51.0
+    precise: 59.0
+  Cl:
+    fast: 24.0
+    moderate: 28.0
+    precise: 34.0
+  Co:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Cr:
+    fast: 43.0
+    moderate: 47.0
+    precise: 55.0
+  Cs:
+    fast: 18.0
+    moderate: 24.0
+    precise: 28.0
+  Cu:
+    fast: 38.0
+    moderate: 42.0
+    precise: 46.0
+  F:
+    fast: 34.0
+    moderate: 42.0
+    precise: 46.0
+  Fe:
+    fast: 39.0
+    moderate: 45.0
+    precise: 47.0
+  Ga:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  Ge:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  H:
+    fast: 31.0
+    moderate: 37.0
+    precise: 43.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 50.0
+  Hf:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Hg:
+    fast: 26.0
+    moderate: 30.0
+    precise: 34.0
+  I:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  In:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  Ir:
+    fast: 24.0
+    moderate: 28.0
+    precise: 32.0
+  K:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 36.0
+  Li:
+    fast: 33.0
+    moderate: 37.0
+    precise: 41.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 44.0
+    moderate: 44.0
+    precise: 52.0
+  Ni:
+    fast: 45.0
+    moderate: 49.0
+    precise: 55.0
+  O:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 24.0
+    precise: 30.0
+  Pb:
+    fast: 24.0
+    moderate: 28.0
+    precise: 34.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Po:
+    fast: 28.0
+    moderate: 32.0
+    precise: 38.0
+  Pt:
+    fast: 34.0
+    moderate: 38.0
+    precise: 42.0
+  Rb:
+    fast: 17.0
+    moderate: 21.0
+    precise: 25.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 28.0
+    moderate: 32.0
+    precise: 36.0
+  Ru:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  S:
+    fast: 21.0
+    moderate: 27.0
+    precise: 33.0
+  Sb:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Si:
+    fast: 12.0
+    moderate: 16.0
+    precise: 22.0
+  Sn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Sr:
+    fast: 28.0
+    moderate: 34.0
+    precise: 40.0
+  Ta:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Tc:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Te:
+    fast: 34.0
+    moderate: 40.0
+    precise: 46.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Tl:
+    fast: 27.0
+    moderate: 31.0
+    precise: 37.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 29.0
+    moderate: 35.0
+    precise: 41.0
+  Xe:
+    fast: 29.0
+    moderate: 35.0
+    precise: 43.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zr:
+    fast: 29.0
+    moderate: 35.0
+    precise: 41.0
 pseudodojo_lda_stringent:
+  Ag:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Al:
+    fast: 16.0
+    moderate: 22.0
+    precise: 28.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 44.0
+    moderate: 50.0
+    precise: 54.0
+  Au:
+    fast: 28.0
+    moderate: 32.0
+    precise: 38.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 26.0
+  Be:
+    fast: 49.0
+    moderate: 53.0
+    precise: 59.0
+  Bi:
+    fast: 32.0
+    moderate: 36.0
+    precise: 40.0
+  Br:
+    fast: 34.0
+    moderate: 38.0
+    precise: 42.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Cd:
+    fast: 47.0
+    moderate: 51.0
+    precise: 59.0
+  Cl:
+    fast: 24.0
+    moderate: 28.0
+    precise: 34.0
+  Co:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Cr:
+    fast: 56.0
+    moderate: 60.0
+    precise: 66.0
+  Cs:
+    fast: 18.0
+    moderate: 24.0
+    precise: 28.0
+  Cu:
+    fast: 50.0
+    moderate: 56.0
+    precise: 62.0
+  F:
+    fast: 34.0
+    moderate: 42.0
+    precise: 46.0
+  Fe:
+    fast: 65.0
+    moderate: 69.0
+    precise: 73.0
+  Ga:
+    fast: 45.0
+    moderate: 53.0
+    precise: 57.0
+  Ge:
+    fast: 56.0
+    moderate: 62.0
+    precise: 68.0
+  H:
+    fast: 31.0
+    moderate: 37.0
+    precise: 43.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 50.0
+  Hf:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Hg:
+    fast: 26.0
+    moderate: 30.0
+    precise: 34.0
+  I:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  In:
+    fast: 33.0
+    moderate: 37.0
+    precise: 41.0
+  Ir:
+    fast: 24.0
+    moderate: 28.0
+    precise: 32.0
+  K:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 36.0
+  Li:
+    fast: 44.0
+    moderate: 48.0
+    precise: 52.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 61.0
+    moderate: 65.0
+    precise: 69.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 36.0
+    moderate: 40.0
+    precise: 44.0
+  Ni:
+    fast: 48.0
+    moderate: 52.0
+    precise: 58.0
+  O:
+    fast: 42.0
+    moderate: 46.0
+    precise: 52.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 24.0
+    precise: 30.0
+  Pb:
+    fast: 32.0
+    moderate: 36.0
+    precise: 40.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Po:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Pt:
+    fast: 34.0
+    moderate: 38.0
+    precise: 42.0
+  Rb:
+    fast: 17.0
+    moderate: 21.0
+    precise: 25.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 28.0
+    moderate: 32.0
+    precise: 36.0
+  Ru:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  S:
+    fast: 21.0
+    moderate: 27.0
+    precise: 33.0
+  Sb:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Si:
+    fast: 12.0
+    moderate: 16.0
+    precise: 22.0
+  Sn:
+    fast: 38.0
+    moderate: 43.0
+    precise: 49.0
+  Sr:
+    fast: 28.0
+    moderate: 34.0
+    precise: 40.0
+  Ta:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Tc:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Te:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Tl:
+    fast: 34.0
+    moderate: 38.0
+    precise: 42.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 58.0
+    moderate: 62.0
+    precise: 68.0
+  Xe:
+    fast: 29.0
+    moderate: 35.0
+    precise: 43.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zr:
+    fast: 29.0
+    moderate: 35.0
+    precise: 41.0
+pseudodojo_pbe:
+  Ag:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Al:
+    fast: 16.0
+    moderate: 20.0
+    precise: 26.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Au:
+    fast: 32.0
+    moderate: 38.0
+    precise: 44.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Be:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Bi:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  Br:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 28.0
+    moderate: 34.0
+    precise: 38.0
+  Cd:
+    fast: 47.0
+    moderate: 51.0
+    precise: 57.0
+  Cl:
+    fast: 25.0
+    moderate: 29.0
+    precise: 33.0
+  Co:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Cr:
+    fast: 43.0
+    moderate: 47.0
+    precise: 55.0
+  Cs:
+    fast: 19.0
+    moderate: 25.0
+    precise: 29.0
+  Cu:
+    fast: 42.0
+    moderate: 46.0
+    precise: 52.0
+  F:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Fe:
+    fast: 41.0
+    moderate: 45.0
+    precise: 53.0
+  Ga:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  Ge:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  H:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 49.0
+  Hf:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Hg:
+    fast: 29.0
+    moderate: 33.0
+    precise: 39.0
+  I:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  In:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  Ir:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  K:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 34.0
+  La:
+    fast: 50.0
+    moderate: 55.0
+    precise: 65.0
+  Li:
+    fast: 33.0
+    moderate: 37.0
+    precise: 41.0
+  Lu:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  Ni:
+    fast: 45.0
+    moderate: 49.0
+    precise: 55.0
+  O:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Pb:
+    fast: 24.0
+    moderate: 28.0
+    precise: 34.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Po:
+    fast: 28.0
+    moderate: 32.0
+    precise: 38.0
+  Pt:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  Rb:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Ru:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  S:
+    fast: 20.0
+    moderate: 26.0
+    precise: 32.0
+  Sb:
+    fast: 36.0
+    moderate: 40.0
+    precise: 44.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Si:
+    fast: 14.0
+    moderate: 18.0
+    precise: 24.0
+  Sn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Sr:
+    fast: 28.0
+    moderate: 34.0
+    precise: 40.0
+  Ta:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Tc:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Te:
+    fast: 34.0
+    moderate: 40.0
+    precise: 46.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 46.0
+  Tl:
+    fast: 27.0
+    moderate: 31.0
+    precise: 37.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 31.0
+    moderate: 37.0
+    precise: 41.0
+  Xe:
+    fast: 28.0
+    moderate: 34.0
+    precise: 42.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Zr:
+    fast: 29.0
+    moderate: 33.0
+    precise: 49.0
+pseudodojo_pbe_stringent:
+  Ag:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Al:
+    fast: 16.0
+    moderate: 20.0
+    precise: 26.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 48.0
+    moderate: 52.0
+    precise: 58.0
+  Au:
+    fast: 32.0
+    moderate: 38.0
+    precise: 44.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Be:
+    fast: 49.0
+    moderate: 53.0
+    precise: 59.0
+  Bi:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Br:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 28.0
+    moderate: 34.0
+    precise: 38.0
+  Cd:
+    fast: 54.0
+    moderate: 60.0
+    precise: 66.0
+  Cl:
+    fast: 25.0
+    moderate: 29.0
+    precise: 33.0
+  Co:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Cr:
+    fast: 56.0
+    moderate: 60.0
+    precise: 66.0
+  Cs:
+    fast: 19.0
+    moderate: 25.0
+    precise: 29.0
+  Cu:
+    fast: 48.0
+    moderate: 52.0
+    precise: 60.0
+  F:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Fe:
+    fast: 55.0
+    moderate: 59.0
+    precise: 65.0
+  Ga:
+    fast: 53.0
+    moderate: 57.0
+    precise: 61.0
+  Ge:
+    fast: 56.0
+    moderate: 62.0
+    precise: 68.0
+  H:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 49.0
+  Hf:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Hg:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  I:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  In:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ir:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  K:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 34.0
+  La:
+    fast: 50.0
+    moderate: 55.0
+    precise: 65.0
+  Li:
+    fast: 44.0
+    moderate: 48.0
+    precise: 52.0
+  Lu:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 61.0
+    moderate: 65.0
+    precise: 69.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Ni:
+    fast: 48.0
+    moderate: 52.0
+    precise: 58.0
+  O:
+    fast: 42.0
+    moderate: 46.0
+    precise: 52.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Pb:
+    fast: 36.0
+    moderate: 44.0
+    precise: 50.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Po:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Pt:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  Rb:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Ru:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  S:
+    fast: 20.0
+    moderate: 26.0
+    precise: 32.0
+  Sb:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Si:
+    fast: 14.0
+    moderate: 18.0
+    precise: 24.0
+  Sn:
+    fast: 45.0
+    moderate: 51.0
+    precise: 57.0
+  Sr:
+    fast: 28.0
+    moderate: 32.0
+    precise: 36.0
+  Ta:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Tc:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Te:
+    fast: 47.0
+    moderate: 51.0
+    precise: 57.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 46.0
+  Tl:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 31.0
+    moderate: 37.0
+    precise: 41.0
+  Xe:
+    fast: 28.0
+    moderate: 34.0
+    precise: 42.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Zr:
+    fast: 29.0
+    moderate: 33.0
+    precise: 49.0
 pseudodojo_pbesol:
+  Ag:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Al:
+    fast: 16.0
+    moderate: 20.0
+    precise: 26.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Au:
+    fast: 32.0
+    moderate: 38.0
+    precise: 44.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Be:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Bi:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  Br:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 28.0
+    moderate: 34.0
+    precise: 38.0
+  Cd:
+    fast: 47.0
+    moderate: 51.0
+    precise: 57.0
+  Cl:
+    fast: 25.0
+    moderate: 29.0
+    precise: 33.0
+  Co:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Cr:
+    fast: 43.0
+    moderate: 47.0
+    precise: 55.0
+  Cs:
+    fast: 19.0
+    moderate: 25.0
+    precise: 29.0
+  Cu:
+    fast: 42.0
+    moderate: 46.0
+    precise: 52.0
+  F:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Fe:
+    fast: 41.0
+    moderate: 45.0
+    precise: 53.0
+  Ga:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  Ge:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  H:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 49.0
+  Hf:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Hg:
+    fast: 29.0
+    moderate: 33.0
+    precise: 39.0
+  I:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  In:
+    fast: 31.0
+    moderate: 35.0
+    precise: 41.0
+  Ir:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  K:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 34.0
+  La:
+    fast: 50.0
+    moderate: 55.0
+    precise: 65.0
+  Li:
+    fast: 33.0
+    moderate: 37.0
+    precise: 41.0
+  Lu:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 42.0
+    moderate: 48.0
+    precise: 54.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  Ni:
+    fast: 45.0
+    moderate: 49.0
+    precise: 55.0
+  O:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Pb:
+    fast: 24.0
+    moderate: 28.0
+    precise: 34.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Po:
+    fast: 28.0
+    moderate: 32.0
+    precise: 38.0
+  Pt:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  Rb:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Ru:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  S:
+    fast: 20.0
+    moderate: 26.0
+    precise: 32.0
+  Sb:
+    fast: 36.0
+    moderate: 40.0
+    precise: 44.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 39.0
+    moderate: 43.0
+    precise: 49.0
+  Si:
+    fast: 14.0
+    moderate: 18.0
+    precise: 24.0
+  Sn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Sr:
+    fast: 28.0
+    moderate: 34.0
+    precise: 40.0
+  Ta:
+    fast: 25.0
+    moderate: 29.0
+    precise: 35.0
+  Tc:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Te:
+    fast: 34.0
+    moderate: 40.0
+    precise: 46.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 46.0
+  Tl:
+    fast: 27.0
+    moderate: 31.0
+    precise: 37.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 31.0
+    moderate: 37.0
+    precise: 41.0
+  Xe:
+    fast: 28.0
+    moderate: 34.0
+    precise: 42.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Zr:
+    fast: 29.0
+    moderate: 33.0
+    precise: 49.0
 pseudodojo_pbesol_stringent:
+  Ag:
+    fast: 37.0
+    moderate: 41.0
+    precise: 47.0
+  Al:
+    fast: 16.0
+    moderate: 20.0
+    precise: 26.0
+  Ar:
+    fast: 29.0
+    moderate: 33.0
+    precise: 37.0
+  As:
+    fast: 48.0
+    moderate: 52.0
+    precise: 58.0
+  Au:
+    fast: 32.0
+    moderate: 38.0
+    precise: 44.0
+  B:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  Ba:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Be:
+    fast: 49.0
+    moderate: 53.0
+    precise: 59.0
+  Bi:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Br:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  C:
+    fast: 37.0
+    moderate: 41.0
+    precise: 45.0
+  Ca:
+    fast: 28.0
+    moderate: 34.0
+    precise: 38.0
+  Cd:
+    fast: 54.0
+    moderate: 60.0
+    precise: 66.0
+  Cl:
+    fast: 25.0
+    moderate: 29.0
+    precise: 33.0
+  Co:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Cr:
+    fast: 56.0
+    moderate: 60.0
+    precise: 66.0
+  Cs:
+    fast: 19.0
+    moderate: 25.0
+    precise: 29.0
+  Cu:
+    fast: 48.0
+    moderate: 52.0
+    precise: 60.0
+  F:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Fe:
+    fast: 55.0
+    moderate: 59.0
+    precise: 65.0
+  Ga:
+    fast: 53.0
+    moderate: 57.0
+    precise: 61.0
+  Ge:
+    fast: 56.0
+    moderate: 62.0
+    precise: 68.0
+  H:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  He:
+    fast: 39.0
+    moderate: 45.0
+    precise: 49.0
+  Hf:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Hg:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  I:
+    fast: 34.0
+    moderate: 38.0
+    precise: 44.0
+  In:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ir:
+    fast: 30.0
+    moderate: 34.0
+    precise: 40.0
+  K:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  Kr:
+    fast: 22.0
+    moderate: 26.0
+    precise: 34.0
+  La:
+    fast: 50.0
+    moderate: 55.0
+    precise: 65.0
+  Li:
+    fast: 44.0
+    moderate: 48.0
+    precise: 52.0
+  Lu:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Mg:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Mn:
+    fast: 61.0
+    moderate: 65.0
+    precise: 69.0
+  Mo:
+    fast: 36.0
+    moderate: 40.0
+    precise: 46.0
+  N:
+    fast: 36.0
+    moderate: 42.0
+    precise: 48.0
+  Na:
+    fast: 38.0
+    moderate: 44.0
+    precise: 48.0
+  Nb:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Ne:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  Ni:
+    fast: 48.0
+    moderate: 52.0
+    precise: 58.0
+  O:
+    fast: 42.0
+    moderate: 46.0
+    precise: 52.0
+  Os:
+    fast: 33.0
+    moderate: 37.0
+    precise: 43.0
+  P:
+    fast: 18.0
+    moderate: 22.0
+    precise: 28.0
+  Pb:
+    fast: 36.0
+    moderate: 44.0
+    precise: 50.0
+  Pd:
+    fast: 37.0
+    moderate: 41.0
+    precise: 49.0
+  Po:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Pt:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  Rb:
+    fast: 19.0
+    moderate: 23.0
+    precise: 29.0
+  Re:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Rh:
+    fast: 40.0
+    moderate: 44.0
+    precise: 50.0
+  Rn:
+    fast: 32.0
+    moderate: 36.0
+    precise: 42.0
+  Ru:
+    fast: 38.0
+    moderate: 42.0
+    precise: 50.0
+  S:
+    fast: 20.0
+    moderate: 26.0
+    precise: 32.0
+  Sb:
+    fast: 46.0
+    moderate: 50.0
+    precise: 58.0
+  Sc:
+    fast: 35.0
+    moderate: 39.0
+    precise: 45.0
+  Se:
+    fast: 48.0
+    moderate: 52.0
+    precise: 56.0
+  Si:
+    fast: 14.0
+    moderate: 18.0
+    precise: 24.0
+  Sn:
+    fast: 45.0
+    moderate: 51.0
+    precise: 57.0
+  Sr:
+    fast: 28.0
+    moderate: 32.0
+    precise: 36.0
+  Ta:
+    fast: 62.0
+    moderate: 66.0
+    precise: 72.0
+  Tc:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Te:
+    fast: 47.0
+    moderate: 51.0
+    precise: 57.0
+  Ti:
+    fast: 38.0
+    moderate: 42.0
+    precise: 46.0
+  Tl:
+    fast: 38.0
+    moderate: 44.0
+    precise: 50.0
+  V:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  W:
+    fast: 31.0
+    moderate: 37.0
+    precise: 41.0
+  Xe:
+    fast: 28.0
+    moderate: 34.0
+    precise: 42.0
+  Y:
+    fast: 30.0
+    moderate: 36.0
+    precise: 42.0
+  Zn:
+    fast: 38.0
+    moderate: 42.0
+    precise: 48.0
+  Zr:
+    fast: 29.0
+    moderate: 33.0
+    precise: 49.0
