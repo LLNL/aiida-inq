@@ -43,7 +43,7 @@ class ProtocolMixin:
     @classmethod
     def get_protocol_inputs(
         cls,
-        structure: orm.StructureData = None,
+        structure: orm.StructureData    ,
         protocol: Optional[dict] = None,
         overrides: Union[dict, pathlib.Path, None] = None,
     ) -> dict:
@@ -66,7 +66,7 @@ class ProtocolMixin:
             ) from exception
         inputs = recursive_merge(data['default_inputs'], protocol_inputs)
         cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
-        inputs['inq']['energy']['cutoff'] = f'{cutoff} Ha'
+        inputs['inq']['electrons']['cutoff'] = f'{cutoff} Ha'
         inputs.pop('description')
 
         if isinstance(overrides, pathlib.Path):
