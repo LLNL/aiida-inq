@@ -6,7 +6,7 @@ from aiida.common import AttributeDict
 from aiida.engine import BaseRestartWorkChain, while_
 from aiida.plugins import CalculationFactory
 
-from ..protocols.utils import ProtocolMixin # type: ignore
+from .protocols.utils import ProtocolMixin # type: ignore
 
 InqCalculation = CalculationFactory('inq.inq')
 
@@ -42,7 +42,7 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         spec.input(
             'clean_workdir',
             valid_type = orm.Bool,
-            default = False,
+            default = lambda: orm.Bool(False),
             help = 'Whether to clean all related work folders.'
         )
 
@@ -61,9 +61,10 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
     def get_protocol_filepath(cls):
         from importlib_resources import files
 
-        from ..protocols import inq as protocols # type: ignore
+        from .protocols import inq as protocols # type: ignore
         return files(protocols) / 'base.yaml'
         
+    @classmethod
     def get_builder_from_protocol(
         cls,
         code,
@@ -118,10 +119,10 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         # Put the needed inputs with the builder
         builder = cls.get_builder()
 
-        builder.code = code
-        builder.structure = structure
-        builder.parameters = parameters
-        builder.metadata = metadata
+        builder.inq.code = code
+        builder.inq.structure = structure
+        builder.inq.parameters = parameters
+        builder.inq.metadata = metadata
 
         return builder
     
