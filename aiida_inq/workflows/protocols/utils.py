@@ -65,8 +65,6 @@ class ProtocolMixin:
                 f'`{protocol}` is not a valid protocol. Call ``get_available_protocols`` to show available protocols.'
             ) from exception
         inputs = recursive_merge(data['default_inputs'], protocol_inputs)
-        cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
-        inputs['inq']['electrons']['cutoff'] = f'{cutoff} Ha'
         inputs.pop('description')
 
         if isinstance(overrides, pathlib.Path):
@@ -75,6 +73,11 @@ class ProtocolMixin:
 
         if overrides:
             return recursive_merge(inputs, overrides)
+        
+        cutoff = inputs['inq']['electrons'].get('cutoff', None)
+        if not cutoff:
+            cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
+            inputs['inq']['electrons']['cutoff'] = f'{cutoff} Ha'
 
         return inputs
 
