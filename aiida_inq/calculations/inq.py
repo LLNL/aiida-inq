@@ -14,7 +14,9 @@ class InqCalculation(CalcJob):
     # Default input and output files
     _DEFAULT_INPUT_FILE  = 'aiida.in'
     _DEFAULT_OUTPUT_FILE = 'aiida.out'
-    _DEFAULT_ERROR_FILE  = 'aiida.err'
+    _DEFAULT_STDOUT_FILE = 'std.out'
+    _DEFAULT_ERROR_FILE  = 'std.err'
+    _DEFAULT_RESULTS_FILE = 'aiida.results'
  
     @classmethod
     def define(cls, spec):
@@ -62,9 +64,14 @@ class InqCalculation(CalcJob):
             default=cls._DEFAULT_OUTPUT_FILE
         )
         spec.input(
+            'metadata.options.results_filename',
+            valid_type=str,
+            default=cls._DEFAULT_RESULTS_FILE
+        )
+        spec.input(
             'metadata.options.scheduler_stdout',
             valid_type=str,
-            default=cls._DEFAULT_OUTPUT_FILE
+            default=cls._DEFAULT_STDOUT_FILE
         )
         spec.input(
             'metadata.options.scheduler_stderr',
@@ -122,6 +129,8 @@ class InqCalculation(CalcJob):
 
         # Initiate variables
         parameters = self.inputs.parameters.get_dict()
+        results = parameters.pop('results', {})
+
         structure = self.inputs.structure
         atoms = structure.get_ase()
 
@@ -157,6 +166,13 @@ inq clear
 
         f.write(f'inq run {run_type}\n')
 
+        # Set any requested results to print to the results file
+        for key, val in results.items():
+            for k, v in val.items():
+                if str(k).lower() in ['forces']:
+                    f.write(f"echo '{k.capitalize()}:' >> {self._DEFAULT_RESULTS_FILE}\n")
+                f.write(f"inq results {key} {k} {v} >> {self._DEFAULT_RESULTS_FILE}\n")
+
         # Echo that AiiDA finished.
         # Will be used to determine if a job finished.
         f.write(f'\necho "AiiDA DONE"')
@@ -183,7 +199,8 @@ inq clear
         calcinfo.remote_symlink_list = remote_symlink_list
         calcinfo.retrieve_list = []
         calcinfo.retrieve_temporary_list = [self._DEFAULT_OUTPUT_FILE,
-                                            self._DEFAULT_ERROR_FILE]
+                                            self._DEFAULT_ERROR_FILE,
+                                            self._DEFAULT_RESULTS_FILE]
 
         calcinfo.retrieve_singlefile_list = []
 
