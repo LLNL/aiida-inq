@@ -132,7 +132,7 @@ class InqCalculation(CalcJob):
         results = parameters.pop('results', {})
 
         # Check if the cutoff has been given.
-        energy = parameters.get('energy', {})
+        energy = parameters.get('electrons', {})
         cutoff = energy.get('cutoff', None)
         if not cutoff:
             self.report('The energy cutoff was not specified.')
@@ -163,10 +163,12 @@ inq clear
 
         # Iterate through the parameters
         run_type = parameters.pop('run', None)
-        run_type = list(run_type.keys())[0]
         if run_type is None:
             self.report(f'There was no run type specified.')
             self.exit_codes.NO_RUN_TYPE_SPECIFIED
+        else:
+            if type(run_type) is dict:
+                run_type = list(run_type.keys())[0]
         for key, val in parameters.items():
             for k, v in val.items():
                 f.write(f"inq {key} {k} {v}\n")
