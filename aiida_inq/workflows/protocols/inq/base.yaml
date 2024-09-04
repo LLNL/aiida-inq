@@ -13,6 +13,7 @@ default_inputs:
             ground-state:
                 tolerance: 1e-6
                 mixing: 0.3
+            run: ground-state
             
 default_protocol: moderate
 protocols:
