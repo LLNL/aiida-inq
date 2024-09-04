@@ -108,6 +108,12 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         kpoints = parameters.get('kpoints', None)
         if not kpoints:
             kspacing = inputs.get('kpoints_distance')
+            kpoints = orm.KpointsData()
+            kpoints.set_cell_from_structure(structure)
+            kpoints.set_kpoints_mesh_from_density(kspacing, force_parity=False)
+            kpoints = kpoints.get_kpoints_mesh()[0]
+            parameters['kpoints'] = {}
+            parameters['kpoints']['grid'] = ' '.join([str(k) for k in kpoints])
 
         # Put the needed inputs with the builder
         builder = cls.get_builder()
