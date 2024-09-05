@@ -25,7 +25,7 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         super().define(spec)
         spec.expose_inputs(
             InqCalculation, 
-            namespace='inq'
+            namespace='inq',
         )
         spec.input(
             'kpoints',
@@ -67,11 +67,11 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
     @classmethod
     def get_builder_from_protocol(
         cls,
-        code,
-        structure,
-        protocol = None,
-        overrides = None,
-        options = None,
+        code: orm.Code,
+        structure: orm.StructureData,
+        protocol: str = None,
+        overrides: dict = None,
+        options: dict = None,
         **kwargs
     ):
         """
@@ -104,6 +104,8 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         # Pull the parameters and metadata information for the builder
         parameters = inputs['inq'].get('parameters', {})
         metadata = inputs['inq'].get('metadata', {})
+        if options:
+            metadata['options'] = options
 
         # Setup the kpoints data
         kpoints = parameters.get('kpoints', None)
@@ -123,6 +125,7 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         builder.inq.structure = structure
         builder.inq.parameters = parameters
         builder.inq.metadata = metadata
+        builder.clean_workdir = inputs['clean_workdir']
 
         return builder
     
