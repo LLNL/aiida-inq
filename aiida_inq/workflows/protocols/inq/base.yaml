@@ -1,7 +1,6 @@
 default_inputs:
     clean_workdir: False
     kpoints_distance: 0.15
-    max_iterations: 5
     pseudo_set: 'pseudodojo_pbe'
     inq:
         metadata:
