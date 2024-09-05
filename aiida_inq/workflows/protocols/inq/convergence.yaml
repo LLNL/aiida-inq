@@ -1,0 +1,36 @@
+default_inputs:
+    clean_workdir: False
+    kpoints_distance: 0.15
+    pseudo_set: 'pseudodojo_pbe'
+    inq:
+        metadata:
+            options:
+                resources:
+                    tot_num_mpiprocs: 4
+                    num_mpiprocs_per_machine: 4
+                withmpi: True
+        parameters:
+            ground-state:
+                tolerance: 1e-6
+                mixing: 0.3
+            run: ground-state
+            
+default_protocol: moderate
+protocols:
+    moderate:
+        description: 'Protocol to perform the compuation at normal precisiion at moderate computational cost.'
+    precise:
+        description: 'Protocol to perform the computation at high precision at higher computational cost.'
+        kpoints_distance: 0.10
+        pseudo_set: 'pseudodojo_pbe_stringent'
+        inq:
+            parameters:
+                ground-state:
+                    tolerance: 1e-8
+    fast:
+        description: 'Protocol to perform the computation at low precision at minimal computational cost for testing purposes.'
+        kpoints_distance: 0.50
+            
+
+
+            
