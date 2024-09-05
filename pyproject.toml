@@ -59,6 +59,7 @@ tests = [
 
 [project.entry-points.'aiida.workflows']
 'inq.base' = 'aiida_inq.workflows.base:InqBaseWorkChain'
+'inq.convergence' = 'aiida_inq.workflows.convergence:InqConvergenceWorkChain'
 
 [tool.flit.module]
 name = 'aiida_inq'
