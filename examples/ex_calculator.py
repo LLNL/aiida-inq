@@ -48,7 +48,7 @@ inputs = {
         #'store_provenance': False',
         'options': {
             'resources': {
-                'tot_num_mpiprocs': 4
+                'tot_num_mpiprocs': 14
             }
         }
     }
