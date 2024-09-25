@@ -142,6 +142,4 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         self.ctx.inputs = AttributeDict(
             self.exposed_inputs(InqCalculation, 'inq'))
         
-        self.ctx.parameters = self.ctx.inputs.parameters.get_dict()
-        
-        self.ctx.inputs.settings = self.ctx.inputs.settings.get_dict() if 'settings' in self.ctx.inputs else {}
+        self.ctx.inputs.parameters = self.inputs.inq.parameters
