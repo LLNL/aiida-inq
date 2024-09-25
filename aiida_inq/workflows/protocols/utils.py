@@ -80,7 +80,7 @@ class ProtocolMixin:
         else:
             cutoff = None
         if not cutoff:
-            cutoff = cls.suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
+            cutoff = suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
             if not electrons:
                 inputs['inq']['parameters']['electrons'] = {}
             inputs['inq']['parameters']['electrons']['cutoff'] = f'{cutoff} Ha'
@@ -93,37 +93,36 @@ class ProtocolMixin:
         with cls.get_protocol_filepath().open() as file:
             return yaml.safe_load(file)
         
-    @classmethod
-    def suggested_energy_cutoff(
-        cls, 
-        structure,
-        protocol,
-        pseudo_set
-    ) -> float:
-        """
-        Return a suggested energy cutoff based on the provided protocol
-        and pseudo_set designated.
-        """
-        from importlib_resources import files
-        from . import pseudos # type: ignore
-        pseudos_path = files(pseudos) / 'pseudos.yaml'
 
-        with open(pseudos_path, 'r') as infile:
-            pseudo_info = yaml.safe_load(infile)
+def suggested_energy_cutoff(
+    structure,
+    protocol = 'moderate',
+    pseudo_set = 'pseudodojo_pbe'
+) -> float:
+    """
+    Return a suggested energy cutoff based on the provided protocol
+    and pseudo_set designated.
+    """
+    from importlib_resources import files
+    from . import pseudos # type: ignore
+    pseudos_path = files(pseudos) / 'pseudos.yaml'
 
-        values = pseudo_info.get(pseudo_set, None)
+    with open(pseudos_path, 'r') as infile:
+        pseudo_info = yaml.safe_load(infile)
 
-        atoms = structure.get_ase()
+    values = pseudo_info.get(pseudo_set, None)
 
-        symbols = set(atoms.get_chemical_symbols())
+    atoms = structure.get_ase()
 
-        cutoff = 0
-        for atom in symbols:
-            c = values[atom][protocol]
-            if c > cutoff:
-                cutoff = c
+    symbols = set(atoms.get_chemical_symbols())
 
-        return cutoff
+    cutoff = 0
+    for atom in symbols:
+        c = values[atom][protocol]
+        if c > cutoff:
+            cutoff = c
+
+    return int(cutoff)
 
 
 def recursive_merge(left: dict, right: dict) -> dict:
