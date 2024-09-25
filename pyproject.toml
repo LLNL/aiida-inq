@@ -17,12 +17,13 @@ classifiers = [
     'Operating System :: POSIX :: Linux',
     'Operating System :: MacOS :: MacOS X',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
     'Topic :: Scientific/Engineering'
 ]
 keywords = ['aiida', 'workflows', 'inq']
-requires-python = '>=3.10'
+requires-python = '>=3.9'
 dependencies = [
     'aiida-core~=2.0',
     'ase',
@@ -53,6 +54,7 @@ tests = [
 
 [project.entry-points.'aiida.calculations']
 'inq.inq' = 'aiida_inq.calculations.inq:InqCalculation'
+'inq.create_kpoints_from_distance' = 'aiida_inq.calculations.functions.create_kpoints_from_distance:create_kpoints_from_distance'
 
 [project.entry-points.'aiida.parsers']
 'inq.inq' = 'aiida_inq.parsers.inq:InqParser'
