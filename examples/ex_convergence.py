@@ -1,9 +1,8 @@
 from aiida import load_profile
-from aiida.orm import load_code, Dict, List
+from aiida.orm import load_code
 from aiida.plugins import DataFactory, WorkflowFactory
-from aiida.engine import submit
+from aiida.engine import submit, run
 from ase.build import bulk
-import numpy as np
 
 
 # Initiate the default profile.
@@ -35,26 +34,22 @@ overrides = {
         'metadata': {
             'options': {
                 'resources': {
-                    'tot_num_mpiprocs': 4,
-                    'num_mpiprocs_per_machine': 4
+                    'tot_num_mpiprocs': 14
                 }
             }
         }
     }
 }
 
-energy = [f'{x} Ha' for x in range(8, 22, 2)]
-kspacing = np.around(np.arange(0.10, 0.55, 0.05), 2).tolist()
-
 builder = InqConvergenceWorkChain.get_builder_from_protocol(
     code,
     structure,
-    energy_list = List(energy),
-    kspacing_list = List(kspacing),
     protocol = 'fast', # Will reduce the kpoint grid.
     overrides = overrides
 )
 
-calc = submit(builder)
-
-print(f'Created calculation with PK={calc.pk}')
+# If you want to follow the output leave the run command.
+run(builder)
+# Otherwise, comment run and uncomment the following commands.
+#calc = submit(builder)
+#print(f'Created calculation with PK={calc.pk}')
