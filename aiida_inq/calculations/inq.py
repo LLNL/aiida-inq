@@ -139,7 +139,6 @@ class InqCalculation(CalcJob):
 
         # Initiate variables
         parameters = self.inputs.parameters.get_dict()
-        self.report(f'{parameters=}')
         results = parameters.pop('results', {})
 
         # Check if the cutoff has been given.
@@ -176,7 +175,6 @@ set -x
 
         # Iterate through the parameters
         run_type = parameters.pop('run', None)
-        self.report(f'{run_type=}')
         if run_type is None:
             self.report(f'There was no run type specified.')
             self.exit_codes.NO_RUN_TYPE_SPECIFIED

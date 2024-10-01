@@ -117,7 +117,6 @@ class InqTDDFTWorkChain(ProtocolMixin, WorkChain):
 
         # Get input values
         inputs = cls.get_protocol_inputs(protocol, overrides)
-        print(f'{inputs.get('tddft')=}')
 
         gs = InqBaseWorkchain.get_builder_from_protocol(
             code,
@@ -136,7 +135,6 @@ class InqTDDFTWorkChain(ProtocolMixin, WorkChain):
             options = options,
             **kwargs
         )
-        print(f'{tddft['inq']['parameters'].get_dict()=}')
 
         # Put the needed inputs with the builder
         builder = cls.get_builder()
@@ -210,7 +208,6 @@ class InqTDDFTWorkChain(ProtocolMixin, WorkChain):
                 InqBaseWorkchain, namespace='tddft'
             )
         )
-        self.report(f'{inputs.inq.parameters=}')
 
         inputs.structure = self.inputs.structure
         inputs.inq.parent_folder = self.ctx.calc_parent_folder
