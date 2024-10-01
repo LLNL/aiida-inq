@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
-from ase import units
+from ase import units, Atoms, Atom
 import numpy as np
 
 from aiida.parsers import Parser
 from aiida.engine import ExitCode
 from aiida import orm
+from aiida.plugins import DataFactory
 
 from aiida.plugins import CalculationFactory
 
@@ -26,6 +27,10 @@ class InqParser(Parser):
         super(InqParser, self).__init__(node)
         if not issubclass(node.process_class, InqCalculation):
             raise exceptions.ParsingError("Can only parse INQ calculations")
+        
+        self.result_dict = {}
+        self.state = None
+        self.atoms = None
 
     def parse(self, **kwargs):
         """
@@ -67,34 +72,118 @@ class InqParser(Parser):
             inq_done = True
         if not inq_done:
             return self.exit_codes.ERROR_OUTPUT_STDOUT_INCOMPLETE
-        
-        result_dict = {}
 
         if results_filename:
             lines = results_lines
         else:
             lines = output_lines
 
-        state = None
-        for line in lines:
-            if 'Energy:' in line:
-                state = 'energy'
-                result_dict[state] = {'unit': 'eV'}
+        for e, line in enumerate(lines):
+            if 'Cell:' in line:
+                self.state = 'cell'
+                self.atoms = Atoms()
                 continue
-            if 'Forces:' in line:
-                state = 'forces'
-                result_dict[state] = {'values': []}
+            elif 'Ions' in line:
+                self.state = 'ions'
                 continue
-            if line == '':
-                state = None
-            if state == 'energy':
-                values = line.split()
-                unit = getattr(units, values[-1])
-                result_dict[state][values[0]] = float(values[-2]) * unit
-            elif state == 'forces':
-                values = line.split()
-                result_dict[state]['values'].append(np.array(values).astype('float'))
+            elif 'Energy:' in line:
+                self.state = 'energy'
+                self.result_dict[self.state] = {'unit': 'eV'}
+                continue
+            elif 'Forces:' in line:
+                self.state = 'forces'
+                self.result_dict[self.state] = {'values': []}
+                continue
+            elif 'Total-steps:' in line:
+                self.state = 'total-steps'
+                continue
+            elif 'Total-time:' in line:
+                self.state = 'total-time'
+                continue
+            elif 'Time:' in line:
+                self.state = 'time'
+                self.result_dict[self.state] = {'values': []}
+                continue
+            elif 'Total-energy' in line:
+                self.state = 'total-energy'
+                self.result_dict[self.state] = {'values': []}
+                self.result_dict['time'] = {'values': []}
+                continue
+            elif 'Dipole:' in line:
+                self.state = 'dipole'
+                self.result_dict[self.state] = {'values': []}
+                self.result_dict['time'] = {'values': []}
+                continue
+            elif 'Current:' in line:
+                self.state = 'current'
+                self.result_dict[self.state] = {'values': []}
+                self.result_dict['time'] = {'values': []}
+                continue
+            elif line == '':
+                self.state = None
+
+
+            match self.state:
+
+                case 'cell':
+                    cell_lines = lines[e:e+3]
+                    cell = []
+                    for cl in cell_lines:
+                        cell.append(np.array(cl.split()[-3:]).astype('float'))
+                    self.atoms.set_cell(cell)
+                    self.state = None
+
+                case 'ions':
+                    temp = line.split()
+                    self.atoms.append(Atom(temp[2], [temp[3], temp[4], temp[5]]))
+
+                case 'energy':
+                    values = line.split()
+                    unit = getattr(units, values[-1])
+                    self.result_dict[self.state][values[0]] = float(values[-2]) * unit
+
+                case 'forces':
+                    values = line.split()
+                    self.result_dict[self.state]['values'].append(np.array(values).astype('float'))
+
+                case 'total-steps':
+                    self.result_dict[self.state] = int(line)
+
+                case 'total-time':
+                    self.result_dict[self.state] = float(line)
+
+                case 'time':
+                    self.result_dict[self.state]['values'].append(float(line))
+
+                case 'total-energy':
+                    values = line.split()
+                    if len(values) > 2:
+                        self.result_dict[self.state]['unit'] = values[-1].strip('[]')
+                        self.result_dict['time']['unit'] = values[1].strip('[]')
+                    else:
+                        self.result_dict[self.state]['values'].append(float(values[1]))
+                        self.result_dict['time']['values'].append(float(values[0]))
+
+                case 'dipole':
+                    self.parse_dipole_current(line)
+
+                case 'current':
+                    self.parse_dipole_current(line)      
             
-        self.out('output_parameters',orm.Dict(dict=result_dict))
+        self.out('output_parameters', orm.Dict(dict=self.result_dict))
+
+        if self.atoms:
+            StructureData = DataFactory('core.structure')
+            structure = StructureData(ase=self.atoms)
+            self.out('output_structure', structure)
 
         return ExitCode(0)
+
+    def parse_dipole_current(self, line):
+        values = line.split()
+        if len(values) > 4:
+            self.result_dict[self.state]['unit'] = values[-1].strip('[]')
+            self.result_dict['time']['unit'] = values[1].strip('[]')
+        else:
+            self.result_dict[self.state]['values'].append(np.array(values[1:]).astype('float').tolist())
+            self.result_dict['time']['values'].append(float(values[0])) 
