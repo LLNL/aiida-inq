@@ -179,7 +179,7 @@ class InqConvergenceWorkChain(ProtocolMixin, WorkChain):
         """
 
         # Get input values
-        inputs = cls.get_protocol_inputs(structure, protocol, overrides)
+        inputs = cls.get_protocol_inputs(protocol, overrides)
 
         # Pull the parameters and metadata information for the builder
         metadata = inputs['inq'].get('metadata', {})
@@ -204,24 +204,9 @@ class InqConvergenceWorkChain(ProtocolMixin, WorkChain):
         builder.clean_workdir = inputs['clean_workdir']
 
         # See if any of the other values are passed in with kwargs.
-        max_iter = kwargs.get('max_iter', None)
-        if max_iter:
-            builder.max_iter = max_iter
-        energy_delta = kwargs.get('energy_delta', None)
-        if energy_delta:
-            builder.energy_delta = energy_delta
-        energy_start = kwargs.get('energy_start', None)
-        if energy_start:
-            builder.energy_start = energy_start
-        energy_step = kwargs.get('energy_step', None)
-        if energy_step:
-            builder.energy_step = energy_step
-        kspacing_start = kwargs.get('kpsacing_start', None)
-        if kspacing_start:
-            builder.kspacing_start = kspacing_start
-        kspacing_step = kwargs.get('kspacing_step', None)
-        if kspacing_step:
-            builder.kspacing_step = kspacing_step
+        for kwarg in kwargs.keys():
+            if kwarg in list(cls.spec().inputs.keys()):
+                setattr(builder, kwarg, kwargs[kwarg])
 
         return builder
 
