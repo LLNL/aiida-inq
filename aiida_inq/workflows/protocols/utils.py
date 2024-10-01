@@ -43,7 +43,6 @@ class ProtocolMixin:
     @classmethod
     def get_protocol_inputs(
         cls,
-        structure: orm.StructureData    ,
         protocol: Optional[dict] = None,
         overrides: Union[dict, pathlib.Path, None] = None,
     ) -> dict:
@@ -73,17 +72,6 @@ class ProtocolMixin:
 
         if overrides:
             inputs = recursive_merge(inputs, overrides)
-        
-        electrons = inputs['inq']['parameters'].get('electrons', None)
-        if electrons:
-            cutoff = inputs['inq']['parameters']['electrons'].get('cutoff', None)
-        else:
-            cutoff = None
-        if not cutoff:
-            cutoff = suggested_energy_cutoff(structure, protocol, inputs['pseudo_set'])
-            if not electrons:
-                inputs['inq']['parameters']['electrons'] = {}
-            inputs['inq']['parameters']['electrons']['cutoff'] = f'{cutoff} Ha'
 
         return inputs
 
@@ -96,8 +84,8 @@ class ProtocolMixin:
 
 def suggested_energy_cutoff(
     structure,
-    protocol = 'moderate',
-    pseudo_set = 'pseudodojo_pbe'
+    inputs,
+    protocol = 'moderate'
 ) -> float:
     """
     Return a suggested energy cutoff based on the provided protocol
@@ -106,6 +94,10 @@ def suggested_energy_cutoff(
     from importlib_resources import files
     from . import pseudos # type: ignore
     pseudos_path = files(pseudos) / 'pseudos.yaml'
+    pseudo_set = inputs['pseudo_set']
+
+    if protocol is None:
+        protocol = 'moderate'
 
     with open(pseudos_path, 'r') as infile:
         pseudo_info = yaml.safe_load(infile)
