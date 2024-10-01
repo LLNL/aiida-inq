@@ -1,0 +1,33 @@
+clean_workdir: True
+gs:
+  inq:
+    parameters:
+      results:
+        ground-state:
+          energy: ''
+          forces: ''
+      run:
+        ground-state: ''
+    metadata:
+      options:
+        resources:
+          tot_num_mpiprocs: 14
+tddft:
+  inq:
+    parameters:
+      real-time:
+        time-step: '0.025 atu'
+        num-steps: 10
+        ions: 'ehrenfest'
+        observables: ['dipole', 'current']
+      results:
+        real-time:
+          total-energy: ''
+          dipole: ''
+          current: ''
+      run:
+        real-time: ''
+    metadata:
+      options:
+        resources:
+          tot_num_mpiprocs: 14   
