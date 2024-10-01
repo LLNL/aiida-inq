@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from collections import defaultdict
 import numpy as np
 from aiida import orm # type: ignore
@@ -17,6 +18,13 @@ class InqCalculation(CalcJob):
     _DEFAULT_STDOUT_FILE = 'std.out'
     _DEFAULT_ERROR_FILE  = 'std.err'
     _DEFAULT_RESULTS_FILE = 'aiida.results'
+    _DEFAULT_INQ_SUBFOLDER = './.inq/'
+
+    # When restarting, will copy the contents of this folder
+    _restart_copy_from = os.path.join(_DEFAULT_INQ_SUBFOLDER, '*')
+
+    # Where to copy files to from a parent_folder
+    _restart_copy_to = _DEFAULT_INQ_SUBFOLDER
  
     @classmethod
     def define(cls, spec):
@@ -101,6 +109,8 @@ class InqCalculation(CalcJob):
             message='At minimum the energy cutoff must be specified.')
         spec.exit_code(202, 'NO_RUN_TYPE_SPECIFIED',
             message='No run type was specified in the input parameters.')
+        spec.exit_code(203, 'PARAMETER_NOT_REQUESTED',
+            message='Input parameter was not specified for this result.')
 
         # yapf: enable
 
@@ -129,6 +139,7 @@ class InqCalculation(CalcJob):
 
         # Initiate variables
         parameters = self.inputs.parameters.get_dict()
+        self.report(f'{parameters=}')
         results = parameters.pop('results', {})
 
         # Check if the cutoff has been given.
@@ -141,6 +152,9 @@ class InqCalculation(CalcJob):
         structure = self.inputs.structure
         atoms = structure.get_ase()
 
+        # Create subfolders for scratch and permanent data
+        folder.get_subfolder(self._DEFAULT_INQ_SUBFOLDER, create=True)
+
         input_filename = folder.get_abs_path(self._DEFAULT_INPUT_FILE)
         f = open(input_filename, 'w')
         # Initiate the initial settings
@@ -149,7 +163,6 @@ class InqCalculation(CalcJob):
 set -e
 set -x
 
-inq clear
 """)
         # Initiate the cell
         cell = atoms.cell
@@ -163,6 +176,7 @@ inq clear
 
         # Iterate through the parameters
         run_type = parameters.pop('run', None)
+        self.report(f'{run_type=}')
         if run_type is None:
             self.report(f'There was no run type specified.')
             self.exit_codes.NO_RUN_TYPE_SPECIFIED
@@ -171,15 +185,29 @@ inq clear
                 run_type = list(run_type.keys())[0]
         for key, val in parameters.items():
             for k, v in val.items():
-                f.write(f"inq {key} {k} {v}\n")
+                if type(v) is list:
+                    for item in v:
+                        f.write(f"inq {key} {k} {item}\n")
+                else:
+                    f.write(f"inq {key} {k} {v}\n")
 
         f.write(f'inq run {run_type}\n')
+
+        # Print out the final structure
+        f.write(f'inq cell >> {self._DEFAULT_RESULTS_FILE}\n')
+        f.write(f'inq ions >> {self._DEFAULT_RESULTS_FILE}\n')
 
         # Set any requested results to print to the results file
         for key, val in results.items():
             for k, v in val.items():
-                if str(k).lower() in ['forces']:
-                    f.write(f"echo '{k.capitalize()}:' >> {self._DEFAULT_RESULTS_FILE}\n")
+                if str(k).lower() in ['forces', 'dipole', 'current', 'total-energy', 'time']:
+                    # Check if dipole and current were set in the input parameters.
+                    if str(k).lower() in ['dipole', 'current']:
+                        real_time = parameters.get('real-time', None)
+                        if real_time is None:
+                            self.report(f'Input parameter not set for `{k}` results.')
+                            self.exit_codes.PARAMETER_NOT_REQUESTED
+                    f.write(f'echo ""\necho "{k.capitalize()}:" >> {self._DEFAULT_RESULTS_FILE}\n')
                 f.write(f"inq results {key} {k} {v} >> {self._DEFAULT_RESULTS_FILE}\n")
 
         # Echo that AiiDA finished.
@@ -191,6 +219,24 @@ inq clear
         local_copy_list = []
         remote_copy_list = []
         remote_symlink_list = []
+
+        # Setting a parent folder from previous calculation
+        symlink = settings.pop('PARENT_FOLDER_SYMLINK', True)
+        if symlink:
+            if 'parent_folder' in self.inputs:
+                # Put the folder from the previous calculation
+                remote_symlink_list.append((
+                    self.inputs.parent_folder.computer.uuid,
+                    os.path.join(self.inputs.parent_folder.get_remote_path(),
+                                 self._restart_copy_from), self._restart_copy_to
+                ))
+        else:
+            if 'parent_folder' in self.inputs:
+                remote_copy_list.append((
+                    self.inputs.parent_folder.computer.uuid,
+                    os.path.join(self.inputs.parent_folder.get_remote_path(),
+                                 self._restart_copy_from), self._restart_copy_to
+                ))
 
         _default_commandline_params = [self._DEFAULT_INPUT_FILE]
         codeinfo =  CodeInfo()
