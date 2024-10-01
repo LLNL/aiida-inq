@@ -1,0 +1,40 @@
+default_inputs:
+    clean_workdir: False
+    pseudo_set: 'pseudodojo_pbe'
+    gs:
+        inq:
+            metadata:
+                options:
+                    resources:
+                        tot_num_mpiprocs: 4
+                    withmpi: True
+            parameters:
+                ground-state:
+                    tolerance: 1e-6
+                    mixing: 0.3
+                run: ground-state
+    tddft:
+        inq:
+            metdata:
+                options:
+                    resources:
+                        tot_num_mpiprocs: 4
+                    with_mpi: True
+            parameters:
+                real-time:
+                    time_step: "0.05 atu"
+                run: real-time
+                
+            
+default_protocol: moderate
+protocols:
+    moderate:
+        description: 'Protocol to perform the compuation at normal precisiion at moderate computational cost.'
+    precise:
+        description: 'Protocol to perform the computation at high precision at higher computational cost.'
+    fast:
+        description: 'Protocol to perform the computation at low precision at minimal computational cost for testing purposes.'
+            
+
+
+            
