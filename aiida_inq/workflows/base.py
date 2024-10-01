@@ -5,6 +5,7 @@ from aiida import orm
 from aiida.common import AttributeDict
 from aiida.engine import BaseRestartWorkChain, while_
 from aiida.plugins import CalculationFactory
+from .protocols.utils import suggested_energy_cutoff
 
 from .protocols.utils import ProtocolMixin # type: ignore
 
@@ -26,6 +27,12 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         spec.expose_inputs(
             InqCalculation, 
             namespace='inq',
+        )
+        spec.input(
+            'structure',
+            valid_type = orm.StructureData,
+            required = True,
+            help = 'The input structure.'
         )
         spec.input(
             'kpoints',
@@ -99,7 +106,20 @@ class InqBaseWorkChain(ProtocolMixin, BaseRestartWorkChain):
         """
 
         # Get input values
-        inputs = cls.get_protocol_inputs(structure, protocol, overrides)
+        inputs = cls.get_protocol_inputs(protocol, overrides)
+
+        # Check to see if cutoff has been set in overrides.
+        electrons = inputs['inq']['parameters'].get('electrons', None)
+        if electrons:
+            cutoff = inputs['inq']['parameters']['electrons'].get('cutoff', None)
+        else:
+            cutoff = None
+        # Otherwise, put a suggested energy cutoff.
+        if not cutoff:
+            cutoff = suggested_energy_cutoff(structure, inputs, protocol)
+            if not electrons:
+                inputs['inq']['parameters']['electrons'] = {}
+            inputs['inq']['parameters']['electrons']['cutoff'] = f'{cutoff} Ha'
 
         # Pull the parameters and metadata information for the builder
         parameters = inputs['inq'].get('parameters', {})
