@@ -175,8 +175,6 @@ class InqTDDFTWorkChain(ProtocolMixin, WorkChain):
         inputs.metadata.label = label
         inputs.metadata.call_link_label = label
 
-        print(inputs.keys())
-
         ground_state = self.submit(InqBaseWorkchain, **inputs)
         self.report(f'launching InqBaseWorkchain<{ground_state.pk}> for ground state calculation.')
 
@@ -247,6 +245,7 @@ class InqTDDFTWorkChain(ProtocolMixin, WorkChain):
         results.store()
 
         self.out('output_parameters', results)
+        self.out('output_structure', self.ctx.current_structure)
         
         return
     
