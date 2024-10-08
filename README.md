@@ -11,7 +11,10 @@ cd aiida-inq
 pip install -e .
 ```
 
-Future work: Register the package with pypi for simple `pip` installation.
+Or alternatively you can use pip to install.
+```bash
+pip install aiida-inq
+```
 
 ## Release information
 ``LLNL-CODE-2000432``
